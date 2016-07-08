@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.cosmicsubspace.simplewordflash.MainActivity"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:padding="8dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Simple Word Flash"
+        android:textColor="#FFFFFF"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        android:id="@+id/main_title"
+        android:layout_marginBottom="12dp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add"
+            android:id="@+id/main_btn_add"
+            android:textSize="24dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="View"
+            android:id="@+id/main_btn_view"
+            android:textSize="24dp"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Test"
+            android:id="@+id/main_btn_test"
+            android:textSize="24dp"/>
+    </LinearLayout>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="*"
+        android:id="@+id/main_table"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/main_table_title">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Test Settings:"
+                android:id="@+id/textView2"
+                android:layout_span="3"
+                android:gravity="center"
+                android:textSize="24dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/main_table_text"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Word"
+                android:id="@+id/main_table_text_1"
+                android:gravity="center" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pronounciation"
+                android:id="@+id/main_table_text_2"
+                android:gravity="center" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Meaning
+                "
+                android:id="@+id/main_table_text_3"
+                android:gravity="center" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/main_table_buttons" >
+
+            <ToggleButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/main_table_button_word"
+                android:gravity="center"
+                android:textOff="Show"
+                android:textOn="Hide"
+                 />
+
+            <ToggleButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/main_table_button_pron"
+                android:gravity="center"
+                android:textOff="Show"
+                android:textOn="Hide"
+                android:checked="true"/>
+
+            <ToggleButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/main_table_button_mean"
+                android:gravity="center"
+                android:textOff="Show"
+                android:textOn="Hide"
+                android:checked="true"/>
+        </TableRow>
+
+    </TableLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+<!--
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Save"
+            android:id="@+id/main_btn_save"
+            android:textSize="24dp"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Load"
+            android:id="@+id/main_btn_load"
+            android:textSize="24dp"/>
+-->
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Import/export text"
+            android:id="@+id/main_btn_str"
+            android:textSize="16dp" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nothing loaded."
+        android:id="@+id/main_wordcount"
+        android:layout_marginTop="12dp"
+        android:textColor="#FFFFFF"
+        android:textSize="16dp" />
+    <!--
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nothing loaded.Nothing loaded.Nothing loaded.Nothing loaded.Nothing loaded.Nothing loaded."
+        android:id="@+id/main_path"
+        android:layout_marginTop="12dp"
+        android:textSize="12dp"
+        android:gravity="center" />-->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Use the three toggles above to choose what information is displayed in the Test, and what is not.\nTo edit/parse/import the word list from an external program, use the Import/Export text button above.\nThe numbers besides the words are its priority.\nThe frequency of a word is proportional to (2^priority).\nA word with a priority of 6 will be tested as twice as much as a word of priority 5 and so on."
+        android:id="@+id/main_helptext"
+        android:layout_marginTop="12dp"
+        android:textSize="12dp"
+        android:gravity="center" />
+
+</LinearLayout>
