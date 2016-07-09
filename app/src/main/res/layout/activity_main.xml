@@ -168,6 +168,32 @@
         android:layout_marginTop="12dp"
         android:textColor="#FFFFFF"
         android:textSize="16dp" />
+
+    <LinearLayout
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center" >
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New List"
+            android:id="@+id/main_new"
+            android:textSize="16dp" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delete current"
+            android:id="@+id/main_del"
+            android:textSize="16dp" />
+    </LinearLayout>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/main_listlist" />
     <!--
     <TextView
         android:layout_width="wrap_content"
@@ -176,7 +202,7 @@
         android:id="@+id/main_path"
         android:layout_marginTop="12dp"
         android:textSize="12dp"
-        android:gravity="center" />-->
+        android:gravity="center" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -186,5 +212,5 @@
         android:layout_marginTop="12dp"
         android:textSize="12dp"
         android:gravity="center" />
-
+-->
 </LinearLayout>

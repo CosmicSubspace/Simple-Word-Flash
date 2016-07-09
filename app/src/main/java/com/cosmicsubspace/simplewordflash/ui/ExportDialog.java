@@ -11,9 +11,7 @@ import com.cosmicsubspace.simplewordflash.R;
 import com.cosmicsubspace.simplewordflash.internals.WordsManager;
 
 
-public class WordsListDialog {
-
-
+public class ExportDialog {
     public interface EditCompleteListener{
         void complete();
     }
@@ -27,18 +25,18 @@ public class WordsListDialog {
 
     EditCompleteListener ecl;
 
-    public WordsListDialog(Context c, WordsManager wm) {
+    public ExportDialog(Context c, WordsManager wm) {
         this.c = c;
         title = "";
         this.wm = wm;
     }
 
-    public WordsListDialog setTitle(String s) {
+    public ExportDialog setTitle(String s) {
         this.title = s;
         return this;
     }
 
-    public WordsListDialog setOnReturnListener(EditCompleteListener ecl) {
+    public ExportDialog setOnReturnListener(EditCompleteListener ecl) {
         this.ecl = ecl;
         return this;
     }
@@ -54,8 +52,6 @@ public class WordsListDialog {
         view = inflater.inflate(R.layout.words_list_dialog, null);
 
         builder.setView(view);
-
-
 
         str = (EditText) view.findViewById(R.id.str_edit);
 

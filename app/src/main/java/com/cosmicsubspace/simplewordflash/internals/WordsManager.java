@@ -32,7 +32,7 @@ public class WordsManager {
     Random rand=new Random();
 
 
-    private void clearList(){
+    public void clearList(){
         words.clear();
     }
 
@@ -54,9 +54,11 @@ public class WordsManager {
         }
     }
 
+    //TODO this WILL create bugs.
     boolean loadedOnce=false;
     public void importFirst(Context c){
         if (!loadedOnce) {
+            setWordList(getWordListLists(c)[0]);
             importFromFile(c);
             loadedOnce=true;
         }
@@ -119,6 +121,23 @@ public class WordsManager {
     String name=null;
     public void setWordList(String s){
         name=s;
+        clearList();
+    }
+
+    public void newWordList(String name, Context c){
+        setWordList(name);
+        exportToFile(c);
+    }
+
+    public String currentWordListName(){
+        return name;
+    }
+
+    public void deleteCurrentList(Context c){
+        if (name==null) return;
+        c.deleteFile(name);
+        setWordList(null);
+        clearList();
     }
 
 
@@ -137,7 +156,10 @@ public class WordsManager {
         }
         return res;
     }
+
     public Word nextRandomWord(){
+        if (words.size()<2) return new Word("You need at least two words.","You need at least two words.","You need at least two words.");
+
         int position=rand.nextInt(frequencySum());
         for (Word word:words){
             position-=word.getFrequency();
