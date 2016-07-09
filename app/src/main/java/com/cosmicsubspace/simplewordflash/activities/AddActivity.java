@@ -1,4 +1,4 @@
-package com.cosmicsubspace.simplewordflash;
+package com.cosmicsubspace.simplewordflash.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -6,6 +6,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.cosmicsubspace.simplewordflash.helper.Log2;
+import com.cosmicsubspace.simplewordflash.R;
+import com.cosmicsubspace.simplewordflash.internals.Word;
+import com.cosmicsubspace.simplewordflash.internals.WordsManager;
 
 /**
  * Created by Chan on 7/7/2016.

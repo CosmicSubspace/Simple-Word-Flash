@@ -1,4 +1,4 @@
-package com.cosmicsubspace.simplewordflash;
+package com.cosmicsubspace.simplewordflash.ui;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,6 +7,10 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.cosmicsubspace.simplewordflash.R;
+import com.cosmicsubspace.simplewordflash.internals.Word;
+import com.cosmicsubspace.simplewordflash.internals.WordsManager;
 
 /**
  * Created by Chan on 7/7/2016.

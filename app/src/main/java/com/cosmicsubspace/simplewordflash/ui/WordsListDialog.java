@@ -1,4 +1,4 @@
-package com.cosmicsubspace.simplewordflash;
+package com.cosmicsubspace.simplewordflash.ui;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -7,36 +7,38 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 
+import com.cosmicsubspace.simplewordflash.R;
+import com.cosmicsubspace.simplewordflash.internals.WordsManager;
 
-public class EditDialog {
 
-    public final static String LOG_TAG = "CS_AFN";
+public class WordsListDialog {
+
 
     public interface EditCompleteListener{
         void complete();
     }
 
-    EditText word, pron,mean;
+    EditText str;
 
     Context c;
     String title;
 
-    Word target;
+    WordsManager wm;
 
     EditCompleteListener ecl;
 
-    public EditDialog(Context c, Word word) {
+    public WordsListDialog(Context c, WordsManager wm) {
         this.c = c;
         title = "";
-        this.target = word;
+        this.wm = wm;
     }
 
-    public EditDialog setTitle(String s) {
+    public WordsListDialog setTitle(String s) {
         this.title = s;
         return this;
     }
 
-    public EditDialog setOnReturnListener(EditCompleteListener ecl) {
+    public WordsListDialog setOnReturnListener(EditCompleteListener ecl) {
         this.ecl = ecl;
         return this;
     }
@@ -49,30 +51,21 @@ public class EditDialog {
 
         View view;
 
-        view = inflater.inflate(R.layout.activity_add, null);
+        view = inflater.inflate(R.layout.words_list_dialog, null);
 
         builder.setView(view);
 
 
 
-        word = (EditText) view.findViewById(R.id.add_edit_word);
-        pron = (EditText) view.findViewById(R.id.add_edit_pron);
-        mean = (EditText) view.findViewById(R.id.add_edit_mean);
+        str = (EditText) view.findViewById(R.id.str_edit);
 
-        word.setText(target.getWord());
-        pron.setText(target.getPronounciation());
-        mean.setText(target.getMeaning());
-
-        //Don't need that here.
-        view.findViewById(R.id.add_button).setVisibility(View.GONE);
+        str.setText(wm.exportToString());
 
         builder.setMessage(title)
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Import Text", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        target.setWord(word.getText().toString());
-                        target.setPronounciation(pron.getText().toString());
-                        target.setMeaning(mean.getText().toString());
+                        wm.importFromString(str.getText().toString());
 
                         if (ecl!=null) ecl.complete();
                     }

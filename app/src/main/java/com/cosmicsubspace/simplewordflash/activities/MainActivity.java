@@ -1,4 +1,4 @@
-package com.cosmicsubspace.simplewordflash;
+package com.cosmicsubspace.simplewordflash.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,6 +8,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
+
+import com.cosmicsubspace.simplewordflash.R;
+import com.cosmicsubspace.simplewordflash.ui.WordsListDialog;
+import com.cosmicsubspace.simplewordflash.internals.WordsManager;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 

@@ -1,13 +1,15 @@
-package com.cosmicsubspace.simplewordflash;
+package com.cosmicsubspace.simplewordflash.internals;
 
 import android.content.Context;
 import android.os.Environment;
+
+import com.cosmicsubspace.simplewordflash.helper.ErrorLogger;
+import com.cosmicsubspace.simplewordflash.helper.Log2;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -64,15 +66,15 @@ public class WordsManager {
     public File getWordListFile(){
         return new File(Environment.getExternalStorageDirectory().getAbsolutePath() +"/"+ "WordMasterSave.txt");
     }
-    private final String filename="words";
+
 
     public void exportToFile(Context c){
-
+        if (name==null) return;
         //if (file.exists ()) file.delete ();
         try {
             //File file = c.openFileOutput(filename,Context.MODE_PRIVATE);
 
-            FileOutputStream out = c.openFileOutput(filename,Context.MODE_PRIVATE);// new FileOutputStream(file);
+            FileOutputStream out = c.openFileOutput(name,Context.MODE_PRIVATE);// new FileOutputStream(file);
             PrintWriter pw = new PrintWriter(out);
             pw.print(exportToString());
             pw.flush();
@@ -83,11 +85,11 @@ public class WordsManager {
         }
     }
     public void importFromFile(Context c){
-
+        if (name==null) return;
 
         StringBuilder text=new StringBuilder();
         try {
-            FileInputStream file = c.openFileInput(filename);
+            FileInputStream file = c.openFileInput(name);
 
             BufferedReader br = new BufferedReader(new InputStreamReader(file));
 
@@ -104,6 +106,23 @@ public class WordsManager {
 
         importFromString(text.toString());
     }
+
+    public String[] getWordListLists(Context c){
+        File[] files=c.getFilesDir().listFiles();
+        String[] names=new String[files.length];
+        for (int i = 0; i < files.length; i++) {
+            names[i]=files[i].getName();
+        }
+        return names;
+    }
+
+    String name=null;
+    public void setWordList(String s){
+        name=s;
+    }
+
+
+
     public void addWord(Word w){
         words.add(w);
     }

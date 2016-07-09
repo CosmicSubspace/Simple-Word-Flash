@@ -1,8 +1,12 @@
-package com.cosmicsubspace.simplewordflash;
+package com.cosmicsubspace.simplewordflash.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.ListView;
+
+import com.cosmicsubspace.simplewordflash.R;
+import com.cosmicsubspace.simplewordflash.ui.WordsAdpater;
+import com.cosmicsubspace.simplewordflash.internals.WordsManager;
 
 public class ViewActivity extends Activity{
 

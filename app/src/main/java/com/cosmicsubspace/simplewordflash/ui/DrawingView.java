@@ -1,4 +1,4 @@
-package com.cosmicsubspace.simplewordflash;
+package com.cosmicsubspace.simplewordflash.ui;
 
 import android.content.Context;
 import android.graphics.Bitmap;

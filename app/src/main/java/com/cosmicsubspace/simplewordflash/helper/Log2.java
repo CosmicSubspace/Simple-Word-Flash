@@ -1,4 +1,4 @@
-package com.cosmicsubspace.simplewordflash;
+package com.cosmicsubspace.simplewordflash.helper;
 
 //Licensed under the MIT License.
 //Include the license text thingy if you're gonna use this.

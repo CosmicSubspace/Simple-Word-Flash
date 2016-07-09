@@ -1,4 +1,6 @@
-package com.cosmicsubspace.simplewordflash;
+package com.cosmicsubspace.simplewordflash.internals;
+
+import com.cosmicsubspace.simplewordflash.helper.Log2;
 
 /**
  * Created by Chan on 7/6/2016.
