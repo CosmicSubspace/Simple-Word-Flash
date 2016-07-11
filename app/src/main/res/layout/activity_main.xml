@@ -46,91 +46,13 @@
             android:textSize="24dp"/>
     </LinearLayout>
 
-    <TableLayout
+    <View
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:stretchColumns="*"
-        android:id="@+id/main_table"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="12dp">
+        android:layout_height="1dp"
+        android:background="#A0FFFFFF"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/main_table_title">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Test Settings:"
-                android:id="@+id/textView2"
-                android:layout_span="3"
-                android:gravity="center"
-                android:textSize="24dp" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:id="@+id/main_table_text"
-            >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Word"
-                android:id="@+id/main_table_text_1"
-                android:gravity="center" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Pronounciation"
-                android:id="@+id/main_table_text_2"
-                android:gravity="center" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Meaning
-                "
-                android:id="@+id/main_table_text_3"
-                android:gravity="center" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:id="@+id/main_table_buttons" >
-
-            <ToggleButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/main_table_button_word"
-                android:gravity="center"
-                android:textOff="Show"
-                android:textOn="Hide"
-                 />
-
-            <ToggleButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/main_table_button_pron"
-                android:gravity="center"
-                android:textOff="Show"
-                android:textOn="Hide"
-                android:checked="true"/>
-
-            <ToggleButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/main_table_button_mean"
-                android:gravity="center"
-                android:textOff="Show"
-                android:textOn="Hide"
-                android:checked="true"/>
-        </TableRow>
-
-    </TableLayout>
 
     <LinearLayout
         android:orientation="horizontal"
@@ -152,6 +74,7 @@
             android:id="@+id/main_btn_load"
             android:textSize="24dp"/>
 -->
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

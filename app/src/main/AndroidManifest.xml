@@ -15,11 +15,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.AddActivity">
+        <activity android:name=".activities.AddActivity"
+            android:label="Add">
         </activity>
-        <activity android:name=".activities.TestActivity">
+        <activity android:name=".activities.TestActivity"
+            android:label="Test">
         </activity>
-        <activity android:name=".activities.ViewActivity">
+        <activity android:name=".activities.ViewActivity"
+            android:label="View">
+        </activity>
+        <activity android:name=".activities.TestSettingActivity"
+            android:label="Test Settings">
         </activity>
     </application>
 

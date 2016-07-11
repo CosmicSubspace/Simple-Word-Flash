@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -26,7 +27,10 @@ public class WordsManager {
         return inst;
     }
 
-
+    public final static int RANDOM=1;
+    public final static int WEIGHTED_RANDOM=2;
+    public final static int SEQUENTIAL=3;
+    public final static int SHUFFLED=4;
 
     List<Word> words=new ArrayList<>();
     Random rand=new Random();
@@ -54,16 +58,6 @@ public class WordsManager {
         }
     }
 
-    //TODO this WILL create bugs.
-    boolean loadedOnce=false;
-    public void importFirst(Context c){
-        if (!loadedOnce) {
-            setWordList(getWordListLists(c)[0]);
-            importFromFile(c);
-            loadedOnce=true;
-        }
-
-    }
 
     public File getWordListFile(){
         return new File(Environment.getExternalStorageDirectory().getAbsolutePath() +"/"+ "WordMasterSave.txt");
@@ -158,6 +152,9 @@ public class WordsManager {
     }
 
     public Word nextRandomWord(){
+        return words.get(rand.nextInt(words.size()));
+    }
+    public Word nextRandomWordWeighted(){
         if (words.size()<2) return new Word("You need at least two words.","You need at least two words.","You need at least two words.");
 
         int position=rand.nextInt(frequencySum());
@@ -168,32 +165,34 @@ public class WordsManager {
         Log2.log(4,this,"MATH ERROR.");
         return new Word("Error","Contact the dev.","plz");
     }
-    public Word nextRandomWord(Word duplicate){
+    public Word nextRandomWord(Word duplicate, boolean weighted){
         int n=0;
         while (true){
             n++;
-            Word w=nextRandomWord();
+            Word w;
+            if (weighted) w=nextRandomWordWeighted();
+            else w=nextRandomWord();
             if (w!=duplicate) {
                 Log2.log(1,this,"Word randomly picked in "+n+" tries.");
                 return w;
             }
         }
     }
-/*
-    ArrayList<Word> historyStack=new ArrayList<>();
-    int maxHistorySize =10;
-    public void addWordToHistoryStack(Word w){
-        historyStack.add(w);
-        if (historyStack.size()> maxHistorySize){
-            historyStack.remove(0);
-        }
+
+    List<Word> queue;
+    public void generateQueue(boolean shuffle){
+        queue=new ArrayList<>(words);
+        if (shuffle) Collections.shuffle(queue);
     }
-    public Word previous(){
-        Log2.log(1,this,"Previous",historyStack.size());
-        if (historyStack.size()==0) return null;
-        return historyStack.remove(historyStack.size()-1);
+    public Word nextInQueue(){
+        if (queue==null) return null;
+        if (queue.size()==0) return null;
+        return queue.remove(0);
     }
-    */
+    public boolean queueDepleted(){
+        return queue.size()==0;
+    }
+
 
     public Word get(int index){
         return words.get(index);
@@ -203,6 +202,12 @@ public class WordsManager {
     }
     public void delete(Word w){
         words.remove(w);
+    }
+
+    public void resetPriorities(){
+        for(Word word :words){
+            word.setPriority(5);
+        }
     }
 
 

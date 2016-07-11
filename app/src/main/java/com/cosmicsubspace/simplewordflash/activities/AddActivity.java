@@ -1,6 +1,7 @@
 package com.cosmicsubspace.simplewordflash.activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -28,7 +29,12 @@ public class AddActivity extends Activity implements View.OnClickListener{
         setContentView(R.layout.activity_add);
 
         wm=WordsManager.getInstance();
-        wm.importFirst(this);
+        if (wm.currentWordListName()==null){
+            Intent intent = new Intent(AddActivity.this, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        }
+
         word=(EditText)findViewById(R.id.add_edit_word);
         pron=(EditText)findViewById(R.id.add_edit_pron);
         mean=(EditText)findViewById(R.id.add_edit_mean);

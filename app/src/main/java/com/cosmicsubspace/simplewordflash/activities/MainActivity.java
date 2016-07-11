@@ -1,7 +1,10 @@
 package com.cosmicsubspace.simplewordflash.activities;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -14,6 +17,7 @@ import android.widget.ToggleButton;
 
 import com.cosmicsubspace.simplewordflash.R;
 import com.cosmicsubspace.simplewordflash.helper.Log2;
+import com.cosmicsubspace.simplewordflash.helper.WordConstants;
 import com.cosmicsubspace.simplewordflash.ui.CustomSingleTextAdapter;
 import com.cosmicsubspace.simplewordflash.ui.ExportDialog;
 import com.cosmicsubspace.simplewordflash.internals.WordsManager;
@@ -27,8 +31,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
     Button add,view,test, delList,newList,str;
     TextView numWords, path;
 
-    ToggleButton hideWord,hidePron,hideMean;
-
     ListView listList;
 CustomSingleTextAdapter listListAdapter;
 
@@ -41,10 +43,15 @@ CustomSingleTextAdapter listListAdapter;
 
         wm=WordsManager.getInstance();
 
-        if (wm.getWordListLists(this).length==0){
-            wm.newWordList("Word List 1",this);
+        SharedPreferences pref= getSharedPreferences("com.mycompany.myAppName", MODE_PRIVATE);
+        if (pref.getBoolean("first", true)) {
+            //First run.
+            wm.newWordList("JLPT N5",this);
+            wm.importFromString(WordConstants.jlptN5);
+            wm.exportToFile(this);
+
+            pref.edit().putBoolean("first", false).apply();
         }
-        wm.importFirst(this);
 
         add=(Button)findViewById(R.id.main_btn_add);
         add.setOnClickListener(this);
@@ -64,9 +71,6 @@ CustomSingleTextAdapter listListAdapter;
         newList=(Button)findViewById(R.id.main_new);
         newList.setOnClickListener(this);
 
-        hideWord=(ToggleButton)findViewById(R.id.main_table_button_word) ;
-        hidePron=(ToggleButton)findViewById(R.id.main_table_button_pron) ;
-        hideMean=(ToggleButton)findViewById(R.id.main_table_button_mean) ;
 
         numWords=(TextView)findViewById(R.id.main_wordcount);
 
@@ -127,32 +131,35 @@ CustomSingleTextAdapter listListAdapter;
     @Override
     public void onClick(View v) {
         if (v.getId()==R.id.main_btn_add){
+            if (wm.currentWordListName()==null){
+                Toast.makeText(this, "You don't have a word list selected!", Toast.LENGTH_SHORT).show();
+                return;
+            }
             Intent myIntent = new Intent(MainActivity.this, AddActivity.class);
-            //myIntent.putExtra("key", value); //Optional parameters
+
             startActivity(myIntent);
         }else if (v.getId()==R.id.main_btn_test){
-            /*
-            if (wm.getNumWords()<2){
-                Toast.makeText(this, "You need at least two words!", Toast.LENGTH_SHORT).show();
+            if (wm.currentWordListName()==null){
+                Toast.makeText(this, "You don't have a word list selected!", Toast.LENGTH_SHORT).show();
                 return;
-            }*/
-            Intent myIntent = new Intent(MainActivity.this, TestActivity.class);
-            myIntent.putExtra("hideWord", hideWord.isChecked());
-            myIntent.putExtra("hidePron", hidePron.isChecked());
-            myIntent.putExtra("hideMean", hideMean.isChecked());
+            }
+            if (wm.getNumWords()<2){
+                Toast.makeText(this, "You need at least 2 words.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            Intent myIntent = new Intent(MainActivity.this, TestSettingActivity.class);
+
             startActivity(myIntent);
+
         }else if (v.getId()==R.id.main_btn_view){
+            if (wm.currentWordListName()==null){
+                Toast.makeText(this, "You don't have a word list selected!", Toast.LENGTH_SHORT).show();
+                return;
+            }
             Intent myIntent = new Intent(MainActivity.this, ViewActivity.class);
-            //myIntent.putExtra("key", value); //Optional parameters
+
             startActivity(myIntent);
-        }/*else if (v.getId()==R.id.main_btn_load){
-            wm.importFromFile(this);
-            updateCounter();
-            Toast.makeText(this, "Words Loaded.", Toast.LENGTH_SHORT).show();
-        }else if (v.getId()==R.id.main_btn_save){
-            wm.exportToFile(this);
-            Toast.makeText(this, "Saved.", Toast.LENGTH_SHORT).show();
-        }*/else if (v.getId()==R.id.main_btn_str){
+        }else if (v.getId()==R.id.main_btn_str){
             new ExportDialog(this,wm).setTitle("Words List").setOnReturnListener(new ExportDialog.EditCompleteListener() {
                 @Override
                 public void complete() {
@@ -161,9 +168,20 @@ CustomSingleTextAdapter listListAdapter;
                 }
             }).init();
         }else if (v.getId()==R.id.main_del){
-            wm.deleteCurrentList(this);
-            updateCounter();
-            updateList();
+
+            new AlertDialog.Builder(this)
+                    .setTitle("Word list delete")
+                    .setMessage("Do you really want to delete?")
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            wm.deleteCurrentList(MainActivity.this);
+                            updateCounter();
+                            updateList();
+                        }})
+                    .setNegativeButton(android.R.string.no, null).show();
+
+
         }else if (v.getId()==R.id.main_new){
             new SaveDialog(this,wm).setOnReturnListener(new SaveDialog.EditCompleteListener() {
                 @Override
