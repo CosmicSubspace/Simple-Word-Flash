@@ -116,15 +116,12 @@ CustomSingleTextAdapter listListAdapter;
 
         String[] listLists=wm.getWordListLists(this);
 
-        Log2.log(1,this,"updae list",listLists);
-/*
-        listListAdapter.clear();
-        for (int i = 0; i < listLists.length; i++) {
-            listListAdapter.add(listLists[i]);
-        }*/
+        Log2.log(1,this,"update list",listLists);
+
         listListAdapter.replaceData(listLists);
 
         listListAdapter.notifyDataSetChanged();
+
     }
 
 

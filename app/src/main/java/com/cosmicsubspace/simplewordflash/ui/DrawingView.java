@@ -13,39 +13,35 @@ import android.view.View;
 
 public class DrawingView extends View {
 
-    public int width;
-    public  int height;
+
     private Bitmap mBitmap;
     private Canvas mCanvas;
     private Path mPath;
     private Paint   mBitmapPaint;
     Context context;
-    private Paint circlePaint;
-    private Path circlePath;
-    private Paint mPaint;
+
+    private Paint linePaint, dotPaint;
 
     public DrawingView(Context c) {
         super(c);
         context=c;
         mPath = new Path();
         mBitmapPaint = new Paint(Paint.DITHER_FLAG);
-        circlePaint = new Paint();
-        circlePath = new Path();
-        circlePaint.setAntiAlias(true);
-        circlePaint.setColor(Color.BLUE);
-        circlePaint.setStyle(Paint.Style.STROKE);
-        circlePaint.setStrokeJoin(Paint.Join.MITER);
-        circlePaint.setStrokeWidth(4f);
 
+        linePaint = new Paint();
+        linePaint.setAntiAlias(true);
+        linePaint.setDither(true);
+        linePaint.setColor(Color.BLACK);
+        linePaint.setStyle(Paint.Style.STROKE);
+        linePaint.setStrokeJoin(Paint.Join.ROUND);
+        linePaint.setStrokeCap(Paint.Cap.ROUND);
+        linePaint.setStrokeWidth(12);
 
-        mPaint = new Paint();
-        mPaint.setAntiAlias(true);
-        mPaint.setDither(true);
-        mPaint.setColor(Color.BLACK);
-        mPaint.setStyle(Paint.Style.STROKE);
-        mPaint.setStrokeJoin(Paint.Join.ROUND);
-        mPaint.setStrokeCap(Paint.Cap.ROUND);
-        mPaint.setStrokeWidth(12);
+        dotPaint = new Paint();
+        dotPaint.setAntiAlias(true);
+        dotPaint.setDither(true);
+        dotPaint.setColor(Color.BLACK);
+        dotPaint.setStyle(Paint.Style.FILL);
     }
 
     public void clear(){
@@ -56,7 +52,6 @@ public class DrawingView extends View {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-
         mBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
         mCanvas = new Canvas(mBitmap);
     }
@@ -66,38 +61,47 @@ public class DrawingView extends View {
         super.onDraw(canvas);
         canvas.drawARGB(255,255,255,255);
         canvas.drawBitmap( mBitmap, 0, 0, mBitmapPaint);
-        canvas.drawPath( mPath,  mPaint);
-        //canvas.drawPath( circlePath,  circlePaint);
+        canvas.drawPath( mPath, linePaint);
     }
 
+
+    //last cursor position
     private float mX, mY;
     private static final float TOUCH_TOLERANCE = 4;
+
+    //We need to check is a line has been drawn
+    //or we can't draw dots.
+    private boolean lineDrawn=false;
 
     private void touch_start(float x, float y) {
         mPath.reset();
         mPath.moveTo(x, y);
         mX = x;
         mY = y;
+        lineDrawn=false;
     }
 
     private void touch_move(float x, float y) {
         float dx = Math.abs(x - mX);
         float dy = Math.abs(y - mY);
-        if (true || dx >= TOUCH_TOLERANCE || dy >= TOUCH_TOLERANCE) {
+        if (dx >= TOUCH_TOLERANCE || dy >= TOUCH_TOLERANCE) {
             mPath.quadTo(mX, mY, (x + mX)/2, (y + mY)/2);
             mX = x;
             mY = y;
-
-            circlePath.reset();
-            circlePath.addCircle(mX, mY, 30, Path.Direction.CW);
+            lineDrawn=true;
         }
     }
 
-    private void touch_up() {
+    private void touch_up(float x, float y) {
+        if (!lineDrawn){
+            mCanvas.drawCircle(mX,mY, linePaint.getStrokeWidth()/1.414f,dotPaint);
+        }
+
+
         mPath.lineTo(mX, mY);
-        circlePath.reset();
         // commit the path to our offscreen
-        mCanvas.drawPath(mPath,  mPaint);
+        mCanvas.drawPath(mPath, linePaint);
+
         // kill this so we don't double draw
         mPath.reset();
     }
@@ -117,7 +121,7 @@ public class DrawingView extends View {
                 invalidate();
                 break;
             case MotionEvent.ACTION_UP:
-                touch_up();
+                touch_up(x,y);
                 invalidate();
                 break;
         }
