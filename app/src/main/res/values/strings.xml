@@ -26,7 +26,7 @@
     <string name="export_dialog_help">\\n separates the words. \nEach line should have a Spelling, Pronunciation, Meaning, and Priority, in this order, separated by \\t.\nBeware that some programs (especially messengers) arbitrarily convert \\t to spaces.</string>
     <string name="toast_added">Added!</string>
     <string name="no_wordlist_selected">No word list selected.</string>
-    <string name="words">"words"</string>
+    <string name="words">words</string>
     <string name="toast_no_word_list">You don\'t have a word list selected!</string>
     <string name="toast_at_least_two">You need at least 2 words.</string>
     <string name="words_list">Words List</string>

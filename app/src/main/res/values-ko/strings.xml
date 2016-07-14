@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pron">발음</string>
+    <string name="mean">뜻</string>
+    <string name="add">추가</string>
+    <string name="word">단어</string>
+    <string name="title">Simple Word Flash</string>
+    <string name="goto_view">목록</string>
+    <string name="goto_test">시험</string>
+    <string name="import_export_text">텍스트 내보내기/들여오기</string>
+    <string name="wordlist_default">아무것도 선택되지 않았습니다.</string>
+    <string name="new_list">새 단어장</string>
+    <string name="delete_list">삭제</string>
+    <string name="test_initial_text">"다음"을 눌러 시작하세요.</string>
+    <string name="erase">지우기</string>
+    <string name="next">다음</string>
+    <string name="random_weighted">무작위+</string>
+    <string name="random">무작위</string>
+    <string name="sequential">순서대로</string>
+    <string name="shuffled">섞음</string>
+    <string name="start">시작</string>
+    <string name="reset_priorities">중요도 리셋</string>
+    <string name="save_dialog_text">단어장의 이름을 정하세요.</string>
+    <string name="export_dialog_help">\\n 으로 각 단어가 구분됩니다.\n각 줄에는 단어, 발음, 뜻, 중요도가 이 순서대로 \\t 를 사이에 두고 위치하여야 합니다.\n몇몇 프로그램(특히 메신저)는 \\t를 일반 공백으로 변환하니 주의하십시오.</string>
+    <string name="toast_added">추가되었습니다!</string>
+    <string name="no_wordlist_selected">단어장을 선택하세요.</string>
+    <string name="words">단어들</string>
+    <string name="toast_no_word_list">단어장을 선택해주세요.</string>
+    <string name="toast_at_least_two">적어도 2개의 단어가 필요합니다.</string>
+    <string name="dialog_word_list_del_title">단어장 삭제</string>
+    <string name="dialog_word_list_del_msg">정말 삭제하시겠습니까?</string>
+    <string name="dialog_word_list_new_title">새 단어장</string>
+    <string name="test_reshuffle">다시 섞습니다.</string>
+    <string name="test_restart">처음부터 다시 시작합니다.</string>
+    <string name="random_desc">무작위로 단어를 고릅니다. 각 단어가 선택될 확률은 같습니다.</string>
+    <string name="weighted_desc">단어를 무작위로 고릅니다. 이때 단어가 선택될 확률은 2^(중요도)에 비례합니다.</string>
+    <string name="seq_desc">단어장의 단어들을 순서대로 읽습니다.</string>
+    <string name="shuffle_desc">단어들을 섞어, 무작위 순서로 단어가 한 번씩 나오도록 합니다.</string>
+    <string name="ok">확인</string>
+    <string name="cancel">취소</string>
+    <string name="edit">수정</string>
+    <string name="import_text">텍스트 들여오기</string>
+    <string name="answer">답 보기</string>
+    <string name="goto_add">추가</string>
+    <string name="words_list">단어장</string>
+    <string name="app_name">간단 단어장</string>
+</resources>
