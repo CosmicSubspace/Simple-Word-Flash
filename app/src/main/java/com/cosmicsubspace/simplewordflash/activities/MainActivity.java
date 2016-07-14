@@ -8,12 +8,10 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 
 import com.cosmicsubspace.simplewordflash.R;
 import com.cosmicsubspace.simplewordflash.helper.Log2;
@@ -22,9 +20,6 @@ import com.cosmicsubspace.simplewordflash.ui.CustomSingleTextAdapter;
 import com.cosmicsubspace.simplewordflash.ui.ExportDialog;
 import com.cosmicsubspace.simplewordflash.internals.WordsManager;
 import com.cosmicsubspace.simplewordflash.ui.SaveDialog;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
@@ -109,7 +104,7 @@ CustomSingleTextAdapter listListAdapter;
 
     private void updateCounter(){
         if (wm.currentWordListName()==null) numWords.setText(R.string.no_wordlist_selected);
-        else numWords.setText(wm.currentWordListName()+" : "+wm.getNumWords()+" "+getString(R.string.words)+".");
+        else numWords.setText(wm.currentWordListName()+" : "+wm.getNumWords()+" "+getString(R.string.words));
     }
 
     private void updateList(){
@@ -168,7 +163,7 @@ CustomSingleTextAdapter listListAdapter;
 
             new AlertDialog.Builder(this)
                     .setTitle(R.string.dialog_word_list_del_title)
-                    .setMessage(R.string.dialog_word_list_del_msg)
+                    .setMessage(R.string.dialog_generic_deletion_confirmation)
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int whichButton) {
@@ -185,8 +180,15 @@ CustomSingleTextAdapter listListAdapter;
                 public void complete(String result) {
                     wm.exportToFile(MainActivity.this);
                     Log2.log(1,this,"New wordlist",result);
-                    wm.newWordList(result, MainActivity.this);
-                    updateList();
+                    try {
+                        wm.newWordList(result, MainActivity.this);
+
+                        updateList();
+                        updateCounter();
+                    }catch (IllegalArgumentException e){
+                        Toast.makeText(MainActivity.this, R.string.invalid_filename, Toast.LENGTH_SHORT).show();
+                    }
+
                 }
             }).setTitle(getString(R.string.dialog_word_list_new_title)).init();
 

@@ -159,7 +159,7 @@
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:id="@+id/test_priority_incr"
-
+            android:background="@drawable/ic_expand_less_white_36dp"
             android:layout_weight="1" />
 
         <TextView

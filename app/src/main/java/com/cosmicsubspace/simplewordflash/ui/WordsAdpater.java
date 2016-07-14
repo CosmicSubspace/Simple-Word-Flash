@@ -1,6 +1,8 @@
 package com.cosmicsubspace.simplewordflash.ui;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,15 +17,15 @@ import com.cosmicsubspace.simplewordflash.internals.WordsManager;
 /**
  * Created by Chan on 7/7/2016.
  */
-public class WordsAdpater extends BaseAdapter implements EditDialog.EditCompleteListener{
+public class WordsAdpater extends BaseAdapter implements EditDialog.EditCompleteListener {
 
     private LayoutInflater mInflater;
 
     WordsManager wm;
 
     public WordsAdpater(Context c, WordsManager wm) {
-        mInflater = (LayoutInflater)c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        this.wm=wm;
+        mInflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        this.wm = wm;
     }
 
 
@@ -53,42 +55,49 @@ public class WordsAdpater extends BaseAdapter implements EditDialog.EditComplete
     }
 
 
-
-
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        final Context ctxt=parent.getContext();
+        final Context ctxt = parent.getContext();
 
         ViewHolder holder;
 
         if (convertView == null) {
             holder = new ViewHolder();
             convertView = mInflater.inflate(R.layout.word_list_layout, null);
-            holder.word = (TextView)convertView.findViewById(R.id.list_word);
-            holder.pron = (TextView)convertView.findViewById(R.id.list_pron);
-            holder.mean = (TextView)convertView.findViewById(R.id.list_mean);
-            holder.pri=(TextView)convertView.findViewById(R.id.list_pri);
+            holder.word = (TextView) convertView.findViewById(R.id.list_word);
+            holder.pron = (TextView) convertView.findViewById(R.id.list_pron);
+            holder.mean = (TextView) convertView.findViewById(R.id.list_mean);
+            holder.pri = (TextView) convertView.findViewById(R.id.list_pri);
             holder.btn = (Button) convertView.findViewById(R.id.list_del);
             holder.incr = (Button) convertView.findViewById(R.id.list_incr);
             holder.decr = (Button) convertView.findViewById(R.id.list_decr);
             holder.mod = (Button) convertView.findViewById(R.id.list_mod);
             convertView.setTag(holder);
         } else {
-            holder = (ViewHolder)convertView.getTag();
+            holder = (ViewHolder) convertView.getTag();
         }
 
-        final Word current=wm.get(position);
+        final Word current = wm.get(position);
         holder.word.setText(wm.get(position).getWord());
         holder.pron.setText(wm.get(position).getPronounciation());
         holder.mean.setText(wm.get(position).getMeaning());
-        holder.pri.setText(""+wm.get(position).getPriority());
+        holder.pri.setText("" + wm.get(position).getPriority());
         holder.btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                wm.delete(current);
-                notifyDataSetChanged();
+                new AlertDialog.Builder(ctxt)
+                        .setTitle(R.string.dialog_word_del_title)
+                        .setMessage(R.string.dialog_generic_deletion_confirmation)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                wm.delete(current);
+                                notifyDataSetChanged();
+                            }
+                        })
+                        .setNegativeButton(android.R.string.no, null).show();
+
             }
         });
         holder.incr.setOnClickListener(new View.OnClickListener() {
@@ -108,7 +117,7 @@ public class WordsAdpater extends BaseAdapter implements EditDialog.EditComplete
         holder.mod.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new EditDialog(ctxt,current).setTitle(ctxt.getResources().getString(R.string.edit))
+                new EditDialog(ctxt, current).setTitle(ctxt.getResources().getString(R.string.edit))
                         .setOnReturnListener(WordsAdpater.this).init();
             }
         });

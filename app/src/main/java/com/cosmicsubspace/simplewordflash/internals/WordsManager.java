@@ -63,20 +63,29 @@ public class WordsManager {
         return new File(Environment.getExternalStorageDirectory().getAbsolutePath() +"/"+ "WordMasterSave.txt");
     }
 
-
     public void exportToFile(Context c){
-        if (name==null) return;
+        try {
+            exportToFile(c, name);
+        }catch(IllegalArgumentException e){
+            ErrorLogger.log(e);
+        }
+    }
+    public void exportToFile(Context c, String filename) throws IllegalArgumentException{
+        if (filename==null) return;
         //if (file.exists ()) file.delete ();
         try {
             //File file = c.openFileOutput(filename,Context.MODE_PRIVATE);
 
-            FileOutputStream out = c.openFileOutput(name,Context.MODE_PRIVATE);// new FileOutputStream(file);
+            FileOutputStream out = c.openFileOutput(filename,Context.MODE_PRIVATE);// new FileOutputStream(file);
             PrintWriter pw = new PrintWriter(out);
             pw.print(exportToString());
             pw.flush();
             pw.close();
 
-        } catch (Exception e) {
+        } catch(IllegalArgumentException e){
+            throw e;
+        }
+        catch (Exception e) {
             ErrorLogger.log(e);
         }
     }
@@ -118,9 +127,10 @@ public class WordsManager {
         clearList();
     }
 
-    public void newWordList(String name, Context c){
+    public void newWordList(String name, Context c) throws IllegalArgumentException{
+        clearList();
+        exportToFile(c,name);
         setWordList(name);
-        exportToFile(c);
     }
 
     public String currentWordListName(){

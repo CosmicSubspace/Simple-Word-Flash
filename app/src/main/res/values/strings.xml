@@ -31,7 +31,8 @@
     <string name="toast_at_least_two">You need at least 2 words.</string>
     <string name="words_list">Words List</string>
     <string name="dialog_word_list_del_title">Word list delete</string>
-    <string name="dialog_word_list_del_msg">Do you really want to delete?</string>
+    <string name="dialog_generic_deletion_confirmation">Do you really want to delete?</string>
+    <string name="dialog_word_del_title">Word delete</string>
     <string name="dialog_word_list_new_title">New Word List</string>
     <string name="test_reshuffle">Reshuffling.</string>
     <string name="test_restart">Starting from the beginning.</string>
@@ -43,4 +44,7 @@
     <string name="cancel">Cancel</string>
     <string name="edit">Edit</string>
     <string name="import_text">Import Text</string>
+    <string name="show">Show</string>
+    <string name="hide">Hide</string>
+    <string name="invalid_filename">Invalid Filename.</string>
 </resources>
