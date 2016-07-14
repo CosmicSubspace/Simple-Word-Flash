@@ -20,7 +20,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Press Next to begin."
+            android:text="@string/test_initial_text"
             android:textColor="#FFFFFF"
             android:textSize="24dp"
             android:singleLine="true"
@@ -125,21 +125,21 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ERASE"
+            android:text="@string/erase"
             android:id="@+id/test_prev"
             android:layout_weight="1" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ANSWER"
+            android:text="@string/answer"
             android:id="@+id/test_ans"
             android:layout_weight="1" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="NEXT"
+            android:text="@string/next"
             android:id="@+id/test_next"
             android:layout_weight="1" />
     </LinearLayout>
@@ -159,10 +159,7 @@
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:id="@+id/test_priority_incr"
-            android:background="@drawable/ic_expand_less_white_36dp"
 
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
             android:layout_weight="1" />
 
         <TextView
@@ -173,7 +170,7 @@
             android:gravity="center"
             android:textColor="#FFFFFF"
             android:textSize="24dp"
-            android:layout_centerInParent="true"
+
             android:layout_weight="1" />
 
         <Button
@@ -181,8 +178,7 @@
             android:layout_height="36dp"
             android:background="@drawable/ic_expand_more_white_36dp"
             android:id="@+id/test_priority_decr"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
+
             android:layout_weight="1" />
 
     </LinearLayout>

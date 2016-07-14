@@ -11,7 +11,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Simple Word Flash"
+        android:text="@string/title"
         android:textColor="#FFFFFF"
         android:textSize="24dp"
         android:textStyle="bold"
@@ -27,21 +27,22 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add"
+            android:text="@string/goto_add"
             android:id="@+id/main_btn_add"
             android:textSize="24dp" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="View"
+            android:text="@string/goto_view"
+
             android:id="@+id/main_btn_view"
             android:textSize="24dp"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Test"
+            android:text="@string/goto_test"
             android:id="@+id/main_btn_test"
             android:textSize="24dp"/>
     </LinearLayout>
@@ -78,7 +79,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Import/export text"
+            android:text="@string/import_export_text"
             android:id="@+id/main_btn_str"
             android:textSize="16dp" />
     </LinearLayout>
@@ -86,7 +87,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nothing loaded."
+        android:text="@string/wordlist_default"
         android:id="@+id/main_wordcount"
         android:layout_marginTop="12dp"
         android:textColor="#FFFFFF"
@@ -102,13 +103,13 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New List"
+            android:text="@string/new_list"
             android:id="@+id/main_new"
             android:textSize="16dp" />
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Delete current"
+            android:text="@string/delete_list"
             android:id="@+id/main_del"
             android:textSize="16dp" />
     </LinearLayout>

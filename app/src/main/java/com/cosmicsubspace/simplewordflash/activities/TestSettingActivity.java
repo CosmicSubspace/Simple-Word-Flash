@@ -69,16 +69,16 @@ public class TestSettingActivity extends Activity implements RadioGroup.OnChecke
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         if (checkedId==R.id.sett_rb_random){
             mode=WordsManager.RANDOM;
-            tv.setText("Randomly choose words, all words with equal frequency.");
+            tv.setText(R.string.random_desc);
         }else if (checkedId==R.id.sett_rb_weighted){
             mode=WordsManager.WEIGHTED_RANDOM;
-            tv.setText("Randomly choose words, with the word's frequency proportional to 2^(priority).");
+            tv.setText(R.string.weighted_desc);
         }else if (checkedId==R.id.sett_rb_sequential){
             mode=WordsManager.SEQUENTIAL;
-            tv.setText("Sequentially read through the list.");
+            tv.setText(R.string.seq_desc);
         }else if (checkedId==R.id.sett_rb_shuffled){
             mode=WordsManager.SHUFFLED;
-            tv.setText("Shuffle the words, so that all the words appear exactly once in a random order.");
+            tv.setText(R.string.shuffle_desc);
         }
     }
 

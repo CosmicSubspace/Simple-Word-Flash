@@ -43,7 +43,7 @@ CustomSingleTextAdapter listListAdapter;
 
         wm=WordsManager.getInstance();
 
-        SharedPreferences pref= getSharedPreferences("com.mycompany.myAppName", MODE_PRIVATE);
+        SharedPreferences pref= getSharedPreferences("com.cosmicsubspace.simplewordflash", MODE_PRIVATE);
         if (pref.getBoolean("first", true)) {
             //First run.
             wm.newWordList("JLPT N5",this);
@@ -108,8 +108,8 @@ CustomSingleTextAdapter listListAdapter;
     }
 
     private void updateCounter(){
-        if (wm.currentWordListName()==null) numWords.setText("No word list selected.");
-        else numWords.setText(wm.currentWordListName()+" : "+wm.getNumWords()+" words.");
+        if (wm.currentWordListName()==null) numWords.setText(R.string.no_wordlist_selected);
+        else numWords.setText(wm.currentWordListName()+" : "+wm.getNumWords()+" "+getString(R.string.words)+".");
     }
 
     private void updateList(){
@@ -129,7 +129,7 @@ CustomSingleTextAdapter listListAdapter;
     public void onClick(View v) {
         if (v.getId()==R.id.main_btn_add){
             if (wm.currentWordListName()==null){
-                Toast.makeText(this, "You don't have a word list selected!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.toast_no_word_list, Toast.LENGTH_SHORT).show();
                 return;
             }
             Intent myIntent = new Intent(MainActivity.this, AddActivity.class);
@@ -137,11 +137,11 @@ CustomSingleTextAdapter listListAdapter;
             startActivity(myIntent);
         }else if (v.getId()==R.id.main_btn_test){
             if (wm.currentWordListName()==null){
-                Toast.makeText(this, "You don't have a word list selected!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,  R.string.toast_no_word_list, Toast.LENGTH_SHORT).show();
                 return;
             }
             if (wm.getNumWords()<2){
-                Toast.makeText(this, "You need at least 2 words.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.toast_at_least_two, Toast.LENGTH_SHORT).show();
                 return;
             }
             Intent myIntent = new Intent(MainActivity.this, TestSettingActivity.class);
@@ -150,14 +150,14 @@ CustomSingleTextAdapter listListAdapter;
 
         }else if (v.getId()==R.id.main_btn_view){
             if (wm.currentWordListName()==null){
-                Toast.makeText(this, "You don't have a word list selected!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.toast_no_word_list, Toast.LENGTH_SHORT).show();
                 return;
             }
             Intent myIntent = new Intent(MainActivity.this, ViewActivity.class);
 
             startActivity(myIntent);
         }else if (v.getId()==R.id.main_btn_str){
-            new ExportDialog(this,wm).setTitle("Words List").setOnReturnListener(new ExportDialog.EditCompleteListener() {
+            new ExportDialog(this,wm).setTitle(getString(R.string.words_list)).setOnReturnListener(new ExportDialog.EditCompleteListener() {
                 @Override
                 public void complete() {
                     updateCounter();
@@ -167,8 +167,8 @@ CustomSingleTextAdapter listListAdapter;
         }else if (v.getId()==R.id.main_del){
 
             new AlertDialog.Builder(this)
-                    .setTitle("Word list delete")
-                    .setMessage("Do you really want to delete?")
+                    .setTitle(R.string.dialog_word_list_del_title)
+                    .setMessage(R.string.dialog_word_list_del_msg)
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int whichButton) {
@@ -188,7 +188,7 @@ CustomSingleTextAdapter listListAdapter;
                     wm.newWordList(result, MainActivity.this);
                     updateList();
                 }
-            }).setTitle("New Word List").init();
+            }).setTitle(getString(R.string.dialog_word_list_new_title)).init();
 
         }
 

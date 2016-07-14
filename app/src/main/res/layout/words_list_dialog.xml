@@ -7,7 +7,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="\\n seperates the words. \nEach line should have a Spelling, Pronounciation, Meaning, and Priority, in this order, seperated by \\t.\nBeware that some programs (especially messengers) arbitrarily convert \\t to spaces."
+        android:text="@string/export_dialog_help"
         android:id="@+id/str_text"
 
         />

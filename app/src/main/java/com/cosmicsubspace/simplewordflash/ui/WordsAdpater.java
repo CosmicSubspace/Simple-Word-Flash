@@ -108,7 +108,7 @@ public class WordsAdpater extends BaseAdapter implements EditDialog.EditComplete
         holder.mod.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new EditDialog(ctxt,current).setTitle("Edit")
+                new EditDialog(ctxt,current).setTitle(ctxt.getResources().getString(R.string.edit))
                         .setOnReturnListener(WordsAdpater.this).init();
             }
         });

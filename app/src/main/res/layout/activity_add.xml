@@ -7,7 +7,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Word"
+        android:text="@string/word"
         android:id="@+id/add_word"
 
         />
@@ -19,7 +19,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pronounciation"
+        android:text="@string/pron"
         android:id="@+id/add_pron" />
 
     <EditText
@@ -29,7 +29,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Meaning"
+        android:text="@string/mean"
         android:id="@+id/add_mean" />
 
     <EditText
@@ -40,7 +40,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add"
+        android:text="@string/add"
         android:id="@+id/add_button" />
 
 </LinearLayout>

@@ -63,6 +63,6 @@ public class AddActivity extends Activity implements View.OnClickListener{
         this.pron.setText("");
         this.mean.setText("");
 
-        Toast.makeText(this, "Added!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.toast_added, Toast.LENGTH_SHORT).show();
     }
 }

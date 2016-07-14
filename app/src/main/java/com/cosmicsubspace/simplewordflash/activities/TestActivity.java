@@ -130,13 +130,13 @@ public class TestActivity extends Activity implements View.OnClickListener, View
             if (mode==WordsManager.SHUFFLED){
                 if (wm.queueDepleted()) {
                     wm.generateQueue(true);
-                    Toast.makeText(this, "Reshuffling.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.test_reshuffle, Toast.LENGTH_SHORT).show();
                 }
                 next=wm.nextInQueue();
             }else if (mode==WordsManager.SEQUENTIAL){
                 if (wm.queueDepleted()) {
                     wm.generateQueue(false);
-                    Toast.makeText(this, "Starting from the beginning.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.test_restart, Toast.LENGTH_SHORT).show();
                 }
                 next=wm.nextInQueue();
             }else if (mode==WordsManager.WEIGHTED_RANDOM){

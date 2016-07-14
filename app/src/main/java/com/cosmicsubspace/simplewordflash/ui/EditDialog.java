@@ -70,7 +70,7 @@ public class EditDialog {
         view.findViewById(R.id.add_button).setVisibility(View.GONE);
 
         builder.setMessage(title)
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         target.setWord(word.getText().toString());
@@ -80,7 +80,7 @@ public class EditDialog {
                         if (ecl!=null) ecl.complete();
                     }
                 })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 

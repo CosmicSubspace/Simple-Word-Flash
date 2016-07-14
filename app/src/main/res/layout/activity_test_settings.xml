@@ -23,7 +23,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Word"
+                android:text="@string/word"
                 android:textColor="#FFFFFF"
                 android:textSize="16dp" />
 
@@ -46,7 +46,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Pronounciation"
+                android:text="@string/pron"
                 android:textColor="#FFFFFF"
                 android:textSize="16dp" />
 
@@ -70,7 +70,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Meaning"
+                android:text="@string/mean"
                 android:textColor="#FFFFFF"
                 android:textSize="16dp" />
 
@@ -107,33 +107,33 @@
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Random Weighted"
+            android:text="@string/random_weighted"
             android:id="@+id/sett_rb_weighted"
             android:checked="false" />
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Random"
+            android:text="@string/random"
             android:id="@+id/sett_rb_random" />
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sequential"
+            android:text="@string/sequential"
             android:id="@+id/sett_rb_sequential" />
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Shuffled"
+            android:text="@string/shuffled"
             android:id="@+id/sett_rb_shuffled" />
     </RadioGroup>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Start"
+        android:text="@string/start"
         android:id="@+id/sett_start"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="8dp" />

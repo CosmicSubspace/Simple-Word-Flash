@@ -58,7 +58,7 @@ public class ExportDialog {
         str.setText(wm.exportToString());
 
         builder.setMessage(title)
-                .setPositiveButton("Import Text", new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.import_text, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         wm.importFromString(str.getText().toString());
@@ -66,7 +66,7 @@ public class ExportDialog {
                         if (ecl!=null) ecl.complete();
                     }
                 })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 

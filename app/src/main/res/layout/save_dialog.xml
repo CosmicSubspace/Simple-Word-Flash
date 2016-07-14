@@ -7,7 +7,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="The name of the word list."
+        android:text="@string/save_dialog_text"
         android:id="@+id/sav_text"
 
         />
